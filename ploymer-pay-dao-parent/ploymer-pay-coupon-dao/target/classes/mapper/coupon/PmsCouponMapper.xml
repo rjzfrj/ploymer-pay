@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyzf.polymer.pay.dao.coupon.PmsCouponMapper">
+	<resultMap id="BaseResultMap" type="com.zyzf.polymer.pay.entity.coupon.PmsCoupon">
+		<id column="COUPON_ID" jdbcType="DECIMAL" property="couponId" />
+		<result column="PRODUCT_ID" jdbcType="DECIMAL" property="productId" />
+		<result column="SELLER_ID" jdbcType="DECIMAL" property="sellerId" />
+		<result column="TYPE_ID" jdbcType="DECIMAL" property="typeId" />
+		<result column="COUPON_CODE" jdbcType="VARCHAR" property="couponCode" />
+		<result column="QR_CODE" jdbcType="VARCHAR" property="qrCode" />
+		<result column="FLOOR_PRICE" jdbcType="DECIMAL" property="floorPrice" />
+		<result column="CURRENT_PRICE" jdbcType="DECIMAL" property="currentPrice" />
+		<result column="PRICE" jdbcType="DECIMAL" property="price" />
+		<result column="GOODS_TITLE" jdbcType="VARCHAR" property="goodsTitle" />
+		<result column="GOODS_BODY" jdbcType="VARCHAR" property="goodsBody" />
+		<result column="EFFECTIVE" jdbcType="DECIMAL" property="effective" />
+		<result column="EFFECTIVE_TIME" jdbcType="TIMESTAMP" property="effectiveTime" />
+		<result column="STATUS" jdbcType="DECIMAL" property="status" />
+		<result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="EDITOR_USER" jdbcType="VARCHAR" property="editorUser" />
+		<result column="EDIT_TIME" jdbcType="TIMESTAMP" property="editTime" />
+		<result column="REMARK" jdbcType="VARCHAR" property="remark" />
+		<result column="EXPIREDATE" jdbcType="TIMESTAMP" property="expiredate" />
+		<result column="PRODUCT_PRICE" jdbcType="DECIMAL" property="productPrice" />
+		<result column="ORG_ID" jdbcType="DECIMAL" property="orgId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		COUPON_ID, PRODUCT_ID, SELLER_ID, TYPE_ID, COUPON_CODE, QR_CODE, FLOOR_PRICE,
+		CURRENT_PRICE,
+		PRICE, GOODS_TITLE, GOODS_BODY, EFFECTIVE, EFFECTIVE_TIME, STATUS,
+		CREATE_USER, CREATE_TIME,
+		EDITOR_USER, EDIT_TIME, REMARK, EXPIREDATE, PRODUCT_PRICE, ORG_ID
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from PMS_COUPON
+		where COUPON_ID = #{couponId,jdbcType=DECIMAL}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from PMS_COUPON
+		where COUPON_ID = #{couponId,jdbcType=DECIMAL}
+	</delete>
+	<insert id="insert" parameterType="com.zyzf.polymer.pay.entity.coupon.PmsCoupon">
+		insert into PMS_COUPON (COUPON_ID, PRODUCT_ID, SELLER_ID,
+		TYPE_ID, COUPON_CODE, QR_CODE,
+		FLOOR_PRICE, CURRENT_PRICE, PRICE,
+		GOODS_TITLE, GOODS_BODY, EFFECTIVE,
+		EFFECTIVE_TIME, STATUS, CREATE_USER,
+		CREATE_TIME, EDITOR_USER, EDIT_TIME,
+		REMARK, EXPIREDATE, PRODUCT_PRICE,
+		ORG_ID)
+		values (#{couponId,jdbcType=DECIMAL}, #{productId,jdbcType=DECIMAL},
+		#{sellerId,jdbcType=DECIMAL},
+		#{typeId,jdbcType=DECIMAL}, #{couponCode,jdbcType=VARCHAR}, #{qrCode,jdbcType=VARCHAR},
+		#{floorPrice,jdbcType=DECIMAL}, #{currentPrice,jdbcType=DECIMAL},
+		#{price,jdbcType=DECIMAL},
+		#{goodsTitle,jdbcType=VARCHAR}, #{goodsBody,jdbcType=VARCHAR}, #{effective,jdbcType=DECIMAL},
+		#{effectiveTime,jdbcType=TIMESTAMP}, #{status,jdbcType=DECIMAL},
+		#{createUser,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{editorUser,jdbcType=VARCHAR}, #{editTime,jdbcType=TIMESTAMP},
+		#{remark,jdbcType=VARCHAR}, #{expiredate,jdbcType=TIMESTAMP},
+		#{productPrice,jdbcType=DECIMAL},
+		#{orgId,jdbcType=DECIMAL})
+	</insert>
+	<insert id="insertSelective" parameterType="com.zyzf.polymer.pay.entity.coupon.PmsCoupon">
+		insert into PMS_COUPON
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="couponId != null">
+				COUPON_ID,
+			</if>
+			<if test="productId != null">
+				PRODUCT_ID,
+			</if>
+			<if test="sellerId != null">
+				SELLER_ID,
+			</if>
+			<if test="typeId != null">
+				TYPE_ID,
+			</if>
+			<if test="couponCode != null">
+				COUPON_CODE,
+			</if>
+			<if test="qrCode != null">
+				QR_CODE,
+			</if>
+			<if test="floorPrice != null">
+				FLOOR_PRICE,
+			</if>
+			<if test="currentPrice != null">
+				CURRENT_PRICE,
+			</if>
+			<if test="price != null">
+				PRICE,
+			</if>
+			<if test="goodsTitle != null">
+				GOODS_TITLE,
+			</if>
+			<if test="goodsBody != null">
+				GOODS_BODY,
+			</if>
+			<if test="effective != null">
+				EFFECTIVE,
+			</if>
+			<if test="effectiveTime != null">
+				EFFECTIVE_TIME,
+			</if>
+			<if test="status != null">
+				STATUS,
+			</if>
+			<if test="createUser != null">
+				CREATE_USER,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="editorUser != null">
+				EDITOR_USER,
+			</if>
+			<if test="editTime != null">
+				EDIT_TIME,
+			</if>
+			<if test="remark != null">
+				REMARK,
+			</if>
+			<if test="expiredate != null">
+				EXPIREDATE,
+			</if>
+			<if test="productPrice != null">
+				PRODUCT_PRICE,
+			</if>
+			<if test="orgId != null">
+				ORG_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="couponId != null">
+				#{couponId,jdbcType=DECIMAL},
+			</if>
+			<if test="productId != null">
+				#{productId,jdbcType=DECIMAL},
+			</if>
+			<if test="sellerId != null">
+				#{sellerId,jdbcType=DECIMAL},
+			</if>
+			<if test="typeId != null">
+				#{typeId,jdbcType=DECIMAL},
+			</if>
+			<if test="couponCode != null">
+				#{couponCode,jdbcType=VARCHAR},
+			</if>
+			<if test="qrCode != null">
+				#{qrCode,jdbcType=VARCHAR},
+			</if>
+			<if test="floorPrice != null">
+				#{floorPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="currentPrice != null">
+				#{currentPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DECIMAL},
+			</if>
+			<if test="goodsTitle != null">
+				#{goodsTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsBody != null">
+				#{goodsBody,jdbcType=VARCHAR},
+			</if>
+			<if test="effective != null">
+				#{effective,jdbcType=DECIMAL},
+			</if>
+			<if test="effectiveTime != null">
+				#{effectiveTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=DECIMAL},
+			</if>
+			<if test="createUser != null">
+				#{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="editorUser != null">
+				#{editorUser,jdbcType=VARCHAR},
+			</if>
+			<if test="editTime != null">
+				#{editTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="expiredate != null">
+				#{expiredate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="productPrice != null">
+				#{productPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="orgId != null">
+				#{orgId,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.zyzf.polymer.pay.entity.coupon.PmsCoupon">
+		update PMS_COUPON
+		<set>
+			<if test="productId != null">
+				PRODUCT_ID = #{productId,jdbcType=DECIMAL},
+			</if>
+			<if test="sellerId != null">
+				SELLER_ID = #{sellerId,jdbcType=DECIMAL},
+			</if>
+			<if test="typeId != null">
+				TYPE_ID = #{typeId,jdbcType=DECIMAL},
+			</if>
+			<if test="couponCode != null">
+				COUPON_CODE = #{couponCode,jdbcType=VARCHAR},
+			</if>
+			<if test="qrCode != null">
+				QR_CODE = #{qrCode,jdbcType=VARCHAR},
+			</if>
+			<if test="floorPrice != null">
+				FLOOR_PRICE = #{floorPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="currentPrice != null">
+				CURRENT_PRICE = #{currentPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="price != null">
+				PRICE = #{price,jdbcType=DECIMAL},
+			</if>
+			<if test="goodsTitle != null">
+				GOODS_TITLE = #{goodsTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsBody != null">
+				GOODS_BODY = #{goodsBody,jdbcType=VARCHAR},
+			</if>
+			<if test="effective != null">
+				EFFECTIVE = #{effective,jdbcType=DECIMAL},
+			</if>
+			<if test="effectiveTime != null">
+				EFFECTIVE_TIME = #{effectiveTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=DECIMAL},
+			</if>
+			<if test="createUser != null">
+				CREATE_USER = #{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="editorUser != null">
+				EDITOR_USER = #{editorUser,jdbcType=VARCHAR},
+			</if>
+			<if test="editTime != null">
+				EDIT_TIME = #{editTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="expiredate != null">
+				EXPIREDATE = #{expiredate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="productPrice != null">
+				PRODUCT_PRICE = #{productPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="orgId != null">
+				ORG_ID = #{orgId,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where COUPON_ID = #{couponId,jdbcType=DECIMAL}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.zyzf.polymer.pay.entity.coupon.PmsCoupon">
+		update PMS_COUPON
+		set PRODUCT_ID = #{productId,jdbcType=DECIMAL},
+		SELLER_ID = #{sellerId,jdbcType=DECIMAL},
+		TYPE_ID = #{typeId,jdbcType=DECIMAL},
+		COUPON_CODE = #{couponCode,jdbcType=VARCHAR},
+		QR_CODE = #{qrCode,jdbcType=VARCHAR},
+		FLOOR_PRICE = #{floorPrice,jdbcType=DECIMAL},
+		CURRENT_PRICE = #{currentPrice,jdbcType=DECIMAL},
+		PRICE = #{price,jdbcType=DECIMAL},
+		GOODS_TITLE = #{goodsTitle,jdbcType=VARCHAR},
+		GOODS_BODY = #{goodsBody,jdbcType=VARCHAR},
+		EFFECTIVE = #{effective,jdbcType=DECIMAL},
+		EFFECTIVE_TIME = #{effectiveTime,jdbcType=TIMESTAMP},
+		STATUS = #{status,jdbcType=DECIMAL},
+		CREATE_USER = #{createUser,jdbcType=VARCHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		EDITOR_USER = #{editorUser,jdbcType=VARCHAR},
+		EDIT_TIME = #{editTime,jdbcType=TIMESTAMP},
+		REMARK = #{remark,jdbcType=VARCHAR},
+		EXPIREDATE = #{expiredate,jdbcType=TIMESTAMP},
+		PRODUCT_PRICE = #{productPrice,jdbcType=DECIMAL},
+		ORG_ID = #{orgId,jdbcType=DECIMAL}
+		where COUPON_ID = #{couponId,jdbcType=DECIMAL}
+	</update>
+	
+	<sql id="Where_Card">
+		<if test="productId != null">
+			AND PRODUCT_ID = #{productId,jdbcType=DECIMAL}
+		</if>
+		<if test="sellerId != null">
+			AND SELLER_ID = #{sellerId,jdbcType=DECIMAL}
+		</if>
+		<if test="typeId != null">
+			AND TYPE_ID = #{typeId,jdbcType=DECIMAL}
+		</if>
+		<if test="couponCode != null and couponCode!=''">
+			AND COUPON_CODE = #{couponCode,jdbcType=VARCHAR}
+		</if>
+		<if test="status != null">
+			AND STATUS = #{status,jdbcType=DECIMAL}
+		</if>
+<!-- 		<if test="startEffectiveTime != null ">
+			AND a.EFFECTIVE_TIME <![CDATA[ <=]]>
+			#{startEffectiveTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="endEffectiveTime != null ">
+			AND a.EFFECTIVE_TIME <![CDATA[>=]]>
+			#{endEffectiveTime,jdbcType=TIMESTAMP}
+		</if> -->
+	</sql>
+	<select id="selectCouponList" parameterType="com.zyzf.polymer.pay.entity.coupon.PmsCoupon"
+		resultMap="BaseResultMap">
+		select 	PRODUCT_ID,PRODUCT_PRICE,CURRENT_PRICE,PRICE,GOODS_TITLE,GOODS_BODY,EFFECTIVE_TIME,COUPON_ID,COUPON_CODE,QR_CODE
+		from PMS_COUPON 
+		<where>
+		<include refid="Where_Card"/>
+		</where>
+		
+	</select>
+	<select id="selectCouponByCouponCode" parameterType="com.zyzf.polymer.pay.entity.coupon.PmsCoupon"
+		resultMap="BaseResultMap">
+		select 	PRODUCT_ID,PRODUCT_PRICE,CURRENT_PRICE,PRICE,GOODS_TITLE,GOODS_BODY,EFFECTIVE_TIME,COUPON_ID,COUPON_CODE,QR_CODE
+		from PMS_COUPON 
+		<where>
+		<include refid="Where_Card"/>
+		</where>
+		
+	</select>
+	
+	<!-- 批量修改优惠券状态 -->
+	<update id="batchUpdateStatus" parameterType="Map">
+		update PMS_COUPON
+		set 
+		STATUS =#{status,jdbcType=DECIMAL}
+		where COUPON_ID in 
+		<foreach item="item" collection="list" separator="," open="(" close=")" >
+			#{item}
+		</foreach>
+	</update>
+	
+	
+	
+</mapper>

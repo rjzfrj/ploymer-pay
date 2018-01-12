@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyzf.polymer.pay.dao.merchant.PmsMerchantMapper">
+  <resultMap id="BaseResultMap" type="com.zyzf.polymer.pay.entity.merchant.PmsMerchant">
+    <id column="MCODE" jdbcType="VARCHAR" property="mcode" />
+    <result column="ORG_ID" jdbcType="DECIMAL" property="orgId" />
+    <result column="PUBLIC_KEY" jdbcType="VARCHAR" property="publicKey" />
+    <result column="PRIVATE_KEY" jdbcType="VARCHAR" property="privateKey" />
+    <result column="STATUS" jdbcType="DECIMAL" property="status" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="EDITOR_USER" jdbcType="VARCHAR" property="editorUser" />
+    <result column="EDIT_TIME" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="DELETED" jdbcType="DECIMAL" property="deleted" />
+    <result column="CLEAR_MCODE_TYPE" jdbcType="DECIMAL" property="clearMcodeType" />
+    <result column="ROLE_TYPE" jdbcType="DECIMAL" property="roleType" />
+    <result column="MER_NAME" jdbcType="VARCHAR" property="merName" />
+    <result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+    <result column="LOGIN_PWD" jdbcType="VARCHAR" property="loginPwd" />
+    <result column="SALT" jdbcType="VARCHAR" property="salt" />
+    <result column="LOGIN_CNT" jdbcType="DECIMAL" property="loginCnt" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="QQ" jdbcType="VARCHAR" property="qq" />
+    <result column="WECHAT" jdbcType="VARCHAR" property="wechat" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MCODE, ORG_ID, PUBLIC_KEY, PRIVATE_KEY, STATUS, DESCRIPTION, CREATE_USER, CREATE_TIME, 
+    EDITOR_USER, EDIT_TIME, DELETED, CLEAR_MCODE_TYPE, ROLE_TYPE, MER_NAME, LOGIN_NAME, 
+    LOGIN_PWD, SALT, LOGIN_CNT, EMAIL, QQ, WECHAT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PMS_MERCHANT
+    where MCODE = #{mcode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from PMS_MERCHANT
+    where MCODE = #{mcode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zyzf.polymer.pay.entity.merchant.PmsMerchant">
+    insert into PMS_MERCHANT (MCODE, ORG_ID, PUBLIC_KEY, 
+      PRIVATE_KEY, STATUS, DESCRIPTION, 
+      CREATE_USER, CREATE_TIME, EDITOR_USER, 
+      EDIT_TIME, DELETED, CLEAR_MCODE_TYPE, 
+      ROLE_TYPE, MER_NAME, LOGIN_NAME, 
+      LOGIN_PWD, SALT, LOGIN_CNT, 
+      EMAIL, QQ, WECHAT)
+    values (#{mcode,jdbcType=VARCHAR}, #{orgId,jdbcType=DECIMAL}, #{publicKey,jdbcType=VARCHAR}, 
+      #{privateKey,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{editorUser,jdbcType=VARCHAR}, 
+      #{editTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=DECIMAL}, #{clearMcodeType,jdbcType=DECIMAL}, 
+      #{roleType,jdbcType=DECIMAL}, #{merName,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, 
+      #{loginPwd,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{loginCnt,jdbcType=DECIMAL}, 
+      #{email,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zyzf.polymer.pay.entity.merchant.PmsMerchant">
+    insert into PMS_MERCHANT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mcode != null">
+        MCODE,
+      </if>
+      <if test="orgId != null">
+        ORG_ID,
+      </if>
+      <if test="publicKey != null">
+        PUBLIC_KEY,
+      </if>
+      <if test="privateKey != null">
+        PRIVATE_KEY,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="createUser != null">
+        CREATE_USER,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="editorUser != null">
+        EDITOR_USER,
+      </if>
+      <if test="editTime != null">
+        EDIT_TIME,
+      </if>
+      <if test="deleted != null">
+        DELETED,
+      </if>
+      <if test="clearMcodeType != null">
+        CLEAR_MCODE_TYPE,
+      </if>
+      <if test="roleType != null">
+        ROLE_TYPE,
+      </if>
+      <if test="merName != null">
+        MER_NAME,
+      </if>
+      <if test="loginName != null">
+        LOGIN_NAME,
+      </if>
+      <if test="loginPwd != null">
+        LOGIN_PWD,
+      </if>
+      <if test="salt != null">
+        SALT,
+      </if>
+      <if test="loginCnt != null">
+        LOGIN_CNT,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="qq != null">
+        QQ,
+      </if>
+      <if test="wechat != null">
+        WECHAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mcode != null">
+        #{mcode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=DECIMAL},
+      </if>
+      <if test="publicKey != null">
+        #{publicKey,jdbcType=VARCHAR},
+      </if>
+      <if test="privateKey != null">
+        #{privateKey,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editorUser != null">
+        #{editorUser,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=DECIMAL},
+      </if>
+      <if test="clearMcodeType != null">
+        #{clearMcodeType,jdbcType=DECIMAL},
+      </if>
+      <if test="roleType != null">
+        #{roleType,jdbcType=DECIMAL},
+      </if>
+      <if test="merName != null">
+        #{merName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPwd != null">
+        #{loginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="loginCnt != null">
+        #{loginCnt,jdbcType=DECIMAL},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zyzf.polymer.pay.entity.merchant.PmsMerchant">
+    update PMS_MERCHANT
+    <set>
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=DECIMAL},
+      </if>
+      <if test="publicKey != null">
+        PUBLIC_KEY = #{publicKey,jdbcType=VARCHAR},
+      </if>
+      <if test="privateKey != null">
+        PRIVATE_KEY = #{privateKey,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editorUser != null">
+        EDITOR_USER = #{editorUser,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        EDIT_TIME = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        DELETED = #{deleted,jdbcType=DECIMAL},
+      </if>
+      <if test="clearMcodeType != null">
+        CLEAR_MCODE_TYPE = #{clearMcodeType,jdbcType=DECIMAL},
+      </if>
+      <if test="roleType != null">
+        ROLE_TYPE = #{roleType,jdbcType=DECIMAL},
+      </if>
+      <if test="merName != null">
+        MER_NAME = #{merName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPwd != null">
+        LOGIN_PWD = #{loginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        SALT = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="loginCnt != null">
+        LOGIN_CNT = #{loginCnt,jdbcType=DECIMAL},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        WECHAT = #{wechat,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MCODE = #{mcode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zyzf.polymer.pay.entity.merchant.PmsMerchant">
+    update PMS_MERCHANT
+    set ORG_ID = #{orgId,jdbcType=DECIMAL},
+      PUBLIC_KEY = #{publicKey,jdbcType=VARCHAR},
+      PRIVATE_KEY = #{privateKey,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      EDITOR_USER = #{editorUser,jdbcType=VARCHAR},
+      EDIT_TIME = #{editTime,jdbcType=TIMESTAMP},
+      DELETED = #{deleted,jdbcType=DECIMAL},
+      CLEAR_MCODE_TYPE = #{clearMcodeType,jdbcType=DECIMAL},
+      ROLE_TYPE = #{roleType,jdbcType=DECIMAL},
+      MER_NAME = #{merName,jdbcType=VARCHAR},
+      LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      LOGIN_PWD = #{loginPwd,jdbcType=VARCHAR},
+      SALT = #{salt,jdbcType=VARCHAR},
+      LOGIN_CNT = #{loginCnt,jdbcType=DECIMAL},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      WECHAT = #{wechat,jdbcType=VARCHAR}
+    where MCODE = #{mcode,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyzf.polymer.pay.dao.coupon.PmsIndustryTypeMapper">
+  <resultMap id="BaseResultMap" type="com.zyzf.polymer.pay.entity.coupon.PmsIndustryType">
+    <id column="TYPE_ID" jdbcType="DECIMAL" property="typeId" />
+    <result column="TYPE_NAME" jdbcType="VARCHAR" property="typeName" />
+    <result column="PARENT_ID" jdbcType="DECIMAL" property="parentId" />
+    <result column="MCC" jdbcType="VARCHAR" property="mcc" />
+    <result column="SORT" jdbcType="DECIMAL" property="sort" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="EDITOR_USER" jdbcType="VARCHAR" property="editorUser" />
+    <result column="EDIT_TIME" jdbcType="TIMESTAMP" property="editTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    TYPE_ID, TYPE_NAME, PARENT_ID, MCC, SORT, REMARK, CREATE_USER, CREATE_TIME, EDITOR_USER, 
+    EDIT_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PMS_INDUSTRY_TYPE
+    where TYPE_ID = #{typeId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from PMS_INDUSTRY_TYPE
+    where TYPE_ID = #{typeId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.zyzf.polymer.pay.entity.coupon.PmsIndustryType">
+    insert into PMS_INDUSTRY_TYPE (TYPE_ID, TYPE_NAME, PARENT_ID, 
+      MCC, SORT, REMARK, 
+      CREATE_USER, CREATE_TIME, EDITOR_USER, 
+      EDIT_TIME)
+    values (#{typeId,jdbcType=DECIMAL}, #{typeName,jdbcType=VARCHAR}, #{parentId,jdbcType=DECIMAL}, 
+      #{mcc,jdbcType=VARCHAR}, #{sort,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{editorUser,jdbcType=VARCHAR}, 
+      #{editTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zyzf.polymer.pay.entity.coupon.PmsIndustryType">
+    insert into PMS_INDUSTRY_TYPE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        TYPE_ID,
+      </if>
+      <if test="typeName != null">
+        TYPE_NAME,
+      </if>
+      <if test="parentId != null">
+        PARENT_ID,
+      </if>
+      <if test="mcc != null">
+        MCC,
+      </if>
+      <if test="sort != null">
+        SORT,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="createUser != null">
+        CREATE_USER,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="editorUser != null">
+        EDITOR_USER,
+      </if>
+      <if test="editTime != null">
+        EDIT_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        #{typeId,jdbcType=DECIMAL},
+      </if>
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="mcc != null">
+        #{mcc,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editorUser != null">
+        #{editorUser,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zyzf.polymer.pay.entity.coupon.PmsIndustryType">
+    update PMS_INDUSTRY_TYPE
+    <set>
+      <if test="typeName != null">
+        TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="mcc != null">
+        MCC = #{mcc,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        SORT = #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editorUser != null">
+        EDITOR_USER = #{editorUser,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        EDIT_TIME = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where TYPE_ID = #{typeId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zyzf.polymer.pay.entity.coupon.PmsIndustryType">
+    update PMS_INDUSTRY_TYPE
+    set TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=DECIMAL},
+      MCC = #{mcc,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=DECIMAL},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      EDITOR_USER = #{editorUser,jdbcType=VARCHAR},
+      EDIT_TIME = #{editTime,jdbcType=TIMESTAMP}
+    where TYPE_ID = #{typeId,jdbcType=DECIMAL}
+  </update>
+</mapper>

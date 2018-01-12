@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyzf.polymer.pay.dao.merchant.PmsOrgMoneyMapper">
+  <resultMap id="BaseResultMap" type="com.zyzf.polymer.pay.entity.merchant.PmsOrgMoney">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="ORG_ID" jdbcType="DECIMAL" property="orgId" />
+    <result column="MONEY_TYPE" jdbcType="DECIMAL" property="moneyType" />
+    <result column="MONEY" jdbcType="DECIMAL" property="money" />
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="EDITOR_USER" jdbcType="VARCHAR" property="editorUser" />
+    <result column="EDIT_TIME" jdbcType="TIMESTAMP" property="editTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ORG_ID, MONEY_TYPE, MONEY, CREATE_USER, CREATE_TIME, EDITOR_USER, EDIT_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PMS_ORG_MONEY
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from PMS_ORG_MONEY
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.zyzf.polymer.pay.entity.merchant.PmsOrgMoney">
+    insert into PMS_ORG_MONEY (ID, ORG_ID, MONEY_TYPE, 
+      MONEY, CREATE_USER, CREATE_TIME, 
+      EDITOR_USER, EDIT_TIME)
+    values (#{id,jdbcType=DECIMAL}, #{orgId,jdbcType=DECIMAL}, #{moneyType,jdbcType=DECIMAL}, 
+      #{money,jdbcType=DECIMAL}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{editorUser,jdbcType=VARCHAR}, #{editTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zyzf.polymer.pay.entity.merchant.PmsOrgMoney">
+    insert into PMS_ORG_MONEY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="orgId != null">
+        ORG_ID,
+      </if>
+      <if test="moneyType != null">
+        MONEY_TYPE,
+      </if>
+      <if test="money != null">
+        MONEY,
+      </if>
+      <if test="createUser != null">
+        CREATE_USER,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="editorUser != null">
+        EDITOR_USER,
+      </if>
+      <if test="editTime != null">
+        EDIT_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=DECIMAL},
+      </if>
+      <if test="moneyType != null">
+        #{moneyType,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editorUser != null">
+        #{editorUser,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zyzf.polymer.pay.entity.merchant.PmsOrgMoney">
+    update PMS_ORG_MONEY
+    <set>
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=DECIMAL},
+      </if>
+      <if test="moneyType != null">
+        MONEY_TYPE = #{moneyType,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null">
+        MONEY = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="createUser != null">
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editorUser != null">
+        EDITOR_USER = #{editorUser,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        EDIT_TIME = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zyzf.polymer.pay.entity.merchant.PmsOrgMoney">
+    update PMS_ORG_MONEY
+    set ORG_ID = #{orgId,jdbcType=DECIMAL},
+      MONEY_TYPE = #{moneyType,jdbcType=DECIMAL},
+      MONEY = #{money,jdbcType=DECIMAL},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      EDITOR_USER = #{editorUser,jdbcType=VARCHAR},
+      EDIT_TIME = #{editTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>
